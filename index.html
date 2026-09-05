@@ -1,64 +1,370 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой первый сайт</title>
+    <title>Лёгкий сайт</title>
+    <!-- Подключаем шрифт для красоты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Сбрасываем базовые отступы и задаём общий стиль */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f8fafc;
+            color: #0b1e33;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Контейнер ограничивает ширину и центрирует */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Шапка сайта */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e9edf2;
+            padding: 18px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0b1e33;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e293b;
+            font-size: 16px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Герой-секция */
+        .hero {
+            padding: 64px 0 48px;
+            background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 32px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 40px 20px;
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            max-width: 800px;
+            margin-bottom: 18px;
+            line-height: 1.2;
         }
-        main {
-            padding: 40px 20px;
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+
+        .hero p {
+            font-size: 20px;
+            color: #334155;
+            max-width: 600px;
+            margin-bottom: 30px;
         }
+
+        .btn-group {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .btn {
             display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            padding: 14px 32px;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: 60px;
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
         }
-        .btn:hover {
-            background-color: #45a049;
+
+        .btn-primary {
+            background: #0b1e33;
+            color: white;
+            box-shadow: 0 8px 18px rgba(11, 30, 51, 0.10);
+        }
+
+        .btn-primary:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 24px rgba(11, 30, 51, 0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #0b1e33;
+            border: 1.5px solid #cbd5e1;
+        }
+
+        .btn-secondary:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.04);
+        }
+
+        /* Карточки преимуществ */
+        .features {
+            padding: 40px 0 48px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin-top: 16px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 28px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f6;
+            transition: 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: #dbe7f5;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: #475569;
+            font-size: 16px;
+        }
+
+        /* Секция цитаты / призыв */
+        .quote-section {
+            background: white;
+            border-radius: 40px;
+            padding: 60px 40px;
+            margin: 28px 0 48px;
+            border: 1px solid #eef2f6;
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-size: 26px;
+            font-weight: 500;
+            max-width: 700px;
+            margin: 0 auto 12px;
+            color: #0b1e33;
+            letter-spacing: -0.3px;
+        }
+
+        .quote-section cite {
+            color: #64748b;
+            font-size: 18px;
+            font-style: normal;
+        }
+
+        /* Футер */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid #e2e8f0;
+            padding: 28px 0;
+            background: white;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #0b1e33;
+        }
+
+        .copy {
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        /* Адаптив для мобильных */
+        @media (max-width: 680px) {
+            .hero h1 {
+                font-size: 34px;
+            }
+            .header-inner {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-links {
+                gap: 18px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .quote-section blockquote {
+                font-size: 22px;
+            }
+            .btn-group .btn {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-
+    <!-- Шапка -->
     <header>
-        <h1>Добро пожаловать на мой сайт!</h1>
-        <p>Это простая веб-страница на HTML и CSS.</p>
+        <div class="container header-inner">
+            <a href="#" class="logo">light<span>.</span></a>
+            <div class="nav-links">
+                <a href="#">Главная</a>
+                <a href="#">Возможности</a>
+                <a href="#">О нас</a>
+                <a href="#">Контакты</a>
+            </div>
+        </div>
     </header>
 
+    <!-- Основной контент -->
     <main>
-        <h2>Обо мне</h2>
-        <p>Я учусь создавать сайты. Здесь будет находиться моя личная информация или проект.</p>
-        <a href="mailto:example@email.com" class="btn">Связаться со мной</a>
+        <!-- Герой -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Создаём <span>лёгкие</span> <br>цифровые решения</h1>
+                <p>Простой и чистый дизайн, который помогает сосредоточиться на главном. Быстро, удобно, без лишнего.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary">Начать проект</a>
+                    <a href="#" class="btn btn-secondary">Узнать больше</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок с карточками -->
+        <section class="features">
+            <div class="container">
+                <h2 style="font-size: 32px; font-weight: 600; margin-bottom: 12px;">Преимущества</h2>
+                <p style="color: #475569; margin-bottom: 8px; font-size: 18px;">Всё, что нужно для старта</p>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h3>Быстро</h3>
+                        <p>Минималистичный код и оптимизированные компоненты — загрузка мгновенная.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-icon">🎨</span>
+                        <h3>Чистый дизайн</h3>
+                        <p>Понятная типографика, воздух и акценты, которые работают на пользу.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-icon">📱</span>
+                        <h3>Адаптивность</h3>
+                        <p>Корректно отображается на любом экране — от смартфона до монитора.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Цитата / вдохновение -->
+        <section class="container">
+            <div class="quote-section">
+                <blockquote>
+                    «Простота — это не отсутствие шума, это ясность цели.»
+                </blockquote>
+                <cite>— принцип нашего подхода</cite>
+                <div style="margin-top: 28px;">
+                    <a href="#" class="btn btn-primary" style="padding: 12px 36px;">Напишите нам</a>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Футер -->
     <footer>
-        <p>&copy; 2026 Мой сайт. Все права защищены.</p>
+        <div class="container footer-inner">
+            <span class="copy">© 2026 light. — лёгкий сайт</span>
+            <div class="footer-links">
+                <a href="#">Twitter</a>
+                <a href="#">GitHub</a>
+                <a href="#">Dribbble</a>
+            </div>
+        </div>
     </footer>
-
 </body>
 </html>
