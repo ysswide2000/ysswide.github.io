@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ysswide</title>
+    <style>
+        /* Сброс стилей и базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            background: #0b1120;  /* тёмный фон, похожий на ночной режим */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Главный контейнер — ровно по центру */
+        .center-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Карточка с ником — мягкая, с лёгким свечением */
+        .nick-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            padding: 48px 64px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+            transition: all 0.25s ease;
+            text-align: center;
+        }
+
+        /* Сам ник — крупно, чётко, стильно */
+        .nickname {
+            font-size: clamp(4rem, 14vw, 8rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: #ffffff;
+            text-shadow: 
+                0 0 10px rgba(130, 170, 255, 0.3),
+                0 0 30px rgba(100, 140, 255, 0.1);
+            line-height: 1.2;
+            word-break: break-word;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* Лёгкий акцент — маленькая подпись (необязательно, но добавляет шарм) */
+        .sub {
+            margin-top: 18px;
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        /* Адаптивность для маленьких экранов */
+        @media (max-width: 600px) {
+            .nick-card {
+                padding: 32px 24px;
+                border-radius: 40px;
+                width: 100%;
+                max-width: 400px;
+            }
+            .nickname {
+                font-size: clamp(3.2rem, 18vw, 5rem);
+                letter-spacing: 0.02em;
+            }
+            .sub {
+                font-size: 0.7rem;
+                letter-spacing: 0.2em;
+            }
+        }
+
+        /* Дополнительно — если экран совсем узкий */
+        @media (max-width: 380px) {
+            .nick-card {
+                padding: 28px 16px;
+                border-radius: 32px;
+            }
+            .nickname {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="center-container">
+        <div class="nick-card">
+            <!-- Здесь размещён ник ровно в центре -->
+            <div class="nickname">ysswide</div>
+            <!-- Небольшая подпись для эстетики (опционально) -->
+            <div class="sub">✦ просто ник ✦</div>
+        </div>
+    </div>
+</body>
+</html>
